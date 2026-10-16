@@ -1,0 +1,20 @@
+# Minimum scores per generator. The eval gate exits 1 if any metric is below its threshold.
+# Thresholds sit slightly under the current baseline so CI blocks regressions, not noise.
+
+[extractive]
+hit_at_k = 0.95
+mrr = 0.85
+faithfulness = 0.90
+citation_validity = 0.80
+keyword_recall = 0.70
+abstention_accuracy = 1.00
+
+# Used for the live Groq run on main (needs the GROQ_API_KEY repository secret).
+# LLM output varies slightly between runs, so these leave more headroom.
+[groq]
+hit_at_k = 0.95
+mrr = 0.85
+faithfulness = 0.75
+citation_validity = 0.85
+keyword_recall = 0.80
+abstention_accuracy = 0.75

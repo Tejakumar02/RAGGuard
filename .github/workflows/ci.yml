@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Lint + tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: pip install -r requirements-dev.txt
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: pytest -q
+
+  eval-gate:
+    name: Eval gate (offline, blocking)
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Run golden-set evaluation
+        run: python -m ragguard.eval.run --llm extractive
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eval-report-extractive
+          path: reports/
+
+  eval-groq:
+    name: Eval (Groq LLM, informational)
+    runs-on: ubuntu-latest
+    needs: test
+    # Runs only on main and only if the GROQ_API_KEY secret exists.
+    if: github.ref == 'refs/heads/main'
+    continue-on-error: true
+    env:
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Run golden-set evaluation with Groq
+        if: env.GROQ_API_KEY != ''
+        run: python -m ragguard.eval.run --llm groq
+      - uses: actions/upload-artifact@v4
+        if: always() && env.GROQ_API_KEY != ''
+        with:
+          name: eval-report-groq
+          path: reports/
+
+  docker:
+    name: Docker build + smoke test
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t ragguard .
+      - name: Start container and call the API
+        run: |
+          docker run -d --name ragguard -p 8000:8000 -e RAGGUARD_LLM=extractive ragguard
+          for i in $(seq 1 30); do curl -sf localhost:8000/health && break; sleep 1; done
+          curl -sf -X POST localhost:8000/ask -H 'Content-Type: application/json' \
+            -d '{"question":"What torque are drain plugs tightened to?"}' | tee answer.json
+          grep -q "30 Nm" answer.json
+      - if: always()
+        run: docker logs ragguard || true

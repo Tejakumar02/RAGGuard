@@ -1,0 +1,29 @@
+{"id": "loto-01", "question": "When is lockout/tagout required?", "expected_sources": ["lockout_tagout.md"], "keywords": ["machine guard"]}
+{"id": "loto-02", "question": "What must you do to verify zero energy before starting work?", "expected_sources": ["lockout_tagout.md"], "keywords": ["start button"]}
+{"id": "loto-03", "question": "Who may remove a lockout padlock?", "expected_sources": ["lockout_tagout.md"], "keywords": ["person who applied"]}
+{"id": "loto-04", "question": "How often must LOTO training be refreshed?", "expected_sources": ["lockout_tagout.md"], "keywords": ["12 months"]}
+{"id": "loto-05", "question": "What form does the supervisor complete to remove an absent employee's lock?", "expected_sources": ["lockout_tagout.md"], "keywords": ["SF-12"]}
+{"id": "torque-01", "question": "What torque are drain plugs tightened to?", "expected_sources": ["torque_and_fastening.md"], "keywords": ["30 Nm"]}
+{"id": "torque-02", "question": "What is the torque for end cover bolts?", "expected_sources": ["torque_and_fastening.md"], "keywords": ["45 Nm"]}
+{"id": "torque-03", "question": "How often are torque wrenches calibrated?", "expected_sources": ["torque_and_fastening.md"], "keywords": ["90 days"]}
+{"id": "torque-04", "question": "In what pattern are end cover bolts tightened?", "expected_sources": ["torque_and_fastening.md"], "keywords": ["cross pattern"]}
+{"id": "torque-05", "question": "Is thread locker used on drain plugs?", "expected_sources": ["torque_and_fastening.md"], "keywords": ["thread locker"]}
+{"id": "defect-01", "question": "How quickly must the quality engineer respond to a critical defect?", "expected_sources": ["defect_escalation.md"], "keywords": ["15 minutes"]}
+{"id": "defect-02", "question": "What is a minor defect?", "expected_sources": ["defect_escalation.md"], "keywords": ["cosmetic"]}
+{"id": "defect-03", "question": "Who can release units from the quarantine rack?", "expected_sources": ["defect_escalation.md"], "keywords": ["quality engineer"]}
+{"id": "defect-04", "question": "When must a root cause investigation be opened for repeat defects?", "expected_sources": ["defect_escalation.md"], "keywords": ["three times"]}
+{"id": "vision-01", "question": "What does a red tower lamp mean?", "expected_sources": ["vision_inspection_station.md"], "keywords": ["skipped"]}
+{"id": "vision-02", "question": "What frame rate does the inspection camera stream at?", "expected_sources": ["vision_inspection_station.md"], "keywords": ["25 frames per second"]}
+{"id": "vision-03", "question": "What should the operator do if the golden sample check does not show green?", "expected_sources": ["vision_inspection_station.md"], "keywords": ["automation engineer"]}
+{"id": "vision-04", "question": "How is the camera lens cleaned?", "expected_sources": ["vision_inspection_station.md"], "keywords": ["microfiber"]}
+{"id": "shift-01", "question": "What time does the second shift start?", "expected_sources": ["shift_handover.md"], "keywords": ["14:00"]}
+{"id": "shift-02", "question": "What is the shift target for the tower assembly line?", "expected_sources": ["shift_handover.md"], "keywords": ["60 units"]}
+{"id": "shift-03", "question": "How long is the handover meeting?", "expected_sources": ["shift_handover.md"], "keywords": ["10 minute"]}
+{"id": "pm-01", "question": "What air pressure do pneumatic tools need?", "expected_sources": ["preventive_maintenance.md"], "keywords": ["6 and 7 bar"]}
+{"id": "pm-02", "question": "When are conveyor chains lubricated?", "expected_sources": ["preventive_maintenance.md"], "keywords": ["Monday"]}
+{"id": "pm-03", "question": "What is the minimum stock for critical spare parts?", "expected_sources": ["preventive_maintenance.md"], "keywords": ["two units"]}
+{"id": "pm-04", "question": "How often are the robot cell light curtains tested?", "expected_sources": ["preventive_maintenance.md"], "keywords": ["monthly"]}
+{"id": "none-01", "question": "What is on the cafeteria menu on Friday?", "answerable": false}
+{"id": "none-02", "question": "Who is the CEO of the company?", "answerable": false}
+{"id": "none-03", "question": "How many vacation days do employees get per year?", "answerable": false}
+{"id": "none-04", "question": "What is the Wi-Fi password for the guest network?", "answerable": false}
